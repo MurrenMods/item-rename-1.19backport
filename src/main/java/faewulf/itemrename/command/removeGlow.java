@@ -19,7 +19,7 @@ public class removeGlow {
         dispatcher.register(
                 CommandManager.literal("removeglow")
                         .requires(ServerCommandSource::isExecutedByPlayer)
-                        .requires(Permissions.require(permission.REMOVEGLOW))
+                        //.requires(Permissions.require(permission.REMOVEGLOW))
                         .executes(removeGlow::run)
         );
     }
@@ -40,7 +40,7 @@ public class removeGlow {
 
         ownerCheck.check(player, holding);
 
-        holding.getNbt().remove("ForceGlint");
+        holding.getNbt().putBoolean("ForceGlint", false);
         //holding.remove(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE);
 
         return 0;

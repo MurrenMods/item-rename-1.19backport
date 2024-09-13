@@ -24,7 +24,7 @@ public class rename {
         dispatcher.register(
                 CommandManager.literal("rename")
                         .requires(ServerCommandSource::isExecutedByPlayer)
-                        .requires(Permissions.require(permission.RENAME))
+                        //.requires(Permissions.require(permission.RENAME))
                         .then(CommandManager.argument("name", StringArgumentType.greedyString())
                                 .executes(rename::run)
                         )

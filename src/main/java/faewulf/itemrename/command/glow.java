@@ -19,7 +19,7 @@ public class glow {
         dispatcher.register(
                 CommandManager.literal("glow")
                         .requires(ServerCommandSource::isExecutedByPlayer)
-                        .requires(Permissions.require(permission.GLOW))
+                        //.requires(Permissions.require(permission.GLOW))
                         .executes(glow::run)
         );
     }
@@ -44,7 +44,7 @@ public class glow {
             return 0;
         }
 
-        holding.getNbt().putBoolean("ForceGlint", true);
+        holding.getOrCreateNbt().putBoolean("ForceGlint", true);
 
         return 0;
     }

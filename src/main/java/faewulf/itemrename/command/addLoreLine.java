@@ -26,7 +26,7 @@ public class addLoreLine {
         dispatcher.register(
                 CommandManager.literal("addloreline")
                         .requires(ServerCommandSource::isExecutedByPlayer)
-                        .requires(Permissions.require(permission.ADDLORELINE))
+                        //.requires(Permissions.require(permission.ADDLORELINE))
                         .then(CommandManager.argument("lore", StringArgumentType.greedyString())
                                 .executes(addLoreLine::run)
                         )

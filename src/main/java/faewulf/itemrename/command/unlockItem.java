@@ -19,7 +19,7 @@ public class unlockItem {
         dispatcher.register(
                 CommandManager.literal("unlockitem")
                         .requires(ServerCommandSource::isExecutedByPlayer)
-                        .requires(Permissions.require(permission.UNLOCK))
+                        //.requires(Permissions.require(permission.UNLOCK))
                         .executes(unlockItem::run)
         );
     }
