@@ -7,8 +7,6 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import faewulf.itemrename.util.ownerCheck;
 import faewulf.itemrename.util.permission;
 import me.lucko.fabric.api.permissions.v0.Permissions;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -48,11 +46,11 @@ public class lockItem {
 
         ownerCheck.check(player, holding);
 
-        //set tag
-        holding.apply(DataComponentTypes.CUSTOM_DATA, NbtComponent.DEFAULT, comp -> comp.apply(currentNbt -> {
+        //TODO: set tag
+        /*holding.apply(DataComponentTypes.CUSTOM_DATA, NbtComponent.DEFAULT, comp -> comp.apply(currentNbt -> {
             currentNbt.putString("itemrename:authorUUID", player.getUuid().toString());
             currentNbt.putString("itemrename:authorName", player.getName().getString());
-        }));
+        }));*/
 
         return 0;
     }

@@ -51,7 +51,6 @@ public class removeLoreLine {
 
         int line = IntegerArgumentType.getInteger(context, "line number");
 
-        //holding.set(DataComponentTypes.LORE, formatted);
         loreEditor.removeLoreLine(holding, line);
 
         return 0;

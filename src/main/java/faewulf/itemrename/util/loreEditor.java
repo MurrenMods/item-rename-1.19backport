@@ -1,7 +1,7 @@
 package faewulf.itemrename.util;
 
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.LoreComponent;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 
@@ -10,96 +10,64 @@ import java.util.List;
 
 public class loreEditor {
     public static void setLore(ItemStack stack, int lineIndex, Text loreText) {
-        LoreComponent lore = stack.getComponents().get(DataComponentTypes.LORE);
-
-        //if null
-        if (lore == null)
-            lore = new LoreComponent(new ArrayList<>());
-
-        //get all lores from the array
-        List<Text> allLoreLines = new ArrayList<Text>(lore.lines());
+        List<Text> lore = stack.getTooltip((PlayerEntity)stack.getHolder(), TooltipContext.ADVANCED);
 
         //should fill empty line with null?
-        int currentLoreSize = allLoreLines.size();
+        int currentLoreSize = lore.size();
         while (lineIndex > currentLoreSize) {
             currentLoreSize++;
-            allLoreLines.add(Text.of(" "));
+            lore.add(Text.of(" "));
         }
 
         //replace target lore into this item
-        allLoreLines.set(lineIndex - 1, loreText);
+        lore.set(lineIndex - 1, loreText);
 
-        //just replace the obj
-        lore = new LoreComponent(allLoreLines);
-        stack.set(DataComponentTypes.LORE, lore);
+        //TODO: replace item?
     }
 
     public static void insertLore(ItemStack stack, int lineIndex, Text loreText) {
-        LoreComponent lore = stack.getComponents().get(DataComponentTypes.LORE);
-
-        //if null
-        if (lore == null)
-            lore = new LoreComponent(new ArrayList<>());
-
-        //get all lores from the array
-        List<Text> allLoreLines = new ArrayList<Text>(lore.lines());
+        List<Text> lore = stack.getTooltip((PlayerEntity)stack.getHolder(), TooltipContext.ADVANCED);
 
         //if lineindex > lines
         //should fill empty line with null?
-        int currentLoreSize = allLoreLines.size();
+        int currentLoreSize = lore.size();
         while (lineIndex - 1 > currentLoreSize) {
             currentLoreSize++;
-            allLoreLines.add(Text.of(" "));
+            lore.add(Text.of(" "));
         }
 
         //replace target lore into this item
-        allLoreLines.add(lineIndex - 1, loreText);
+        lore.add(lineIndex - 1, loreText);
 
-        //just replace the obj
-        lore = new LoreComponent(allLoreLines);
-        stack.set(DataComponentTypes.LORE, lore);
+        //TODO: replace item?
     }
 
     public static void addLore(ItemStack stack, Text loreText) {
-        LoreComponent lore = stack.getComponents().get(DataComponentTypes.LORE);
-
-        //if null
-        if (lore == null)
-            lore = new LoreComponent(new ArrayList<>());
-
-        //get all lores from the array
-        List<Text> allLoreLines = new ArrayList<Text>(lore.lines());
+        List<Text> lore = stack.getTooltip((PlayerEntity)stack.getHolder(), TooltipContext.ADVANCED);
 
         //replace target lore into this item
-        allLoreLines.add(loreText);
+        lore.add(loreText);
 
-        //just replace the obj
-        lore = new LoreComponent(allLoreLines);
-        stack.set(DataComponentTypes.LORE, lore);
+        //TODO: replace item?
     }
 
     public static void removeLore(ItemStack stack) {
         //just replace the obj
-        LoreComponent lore = new LoreComponent(new ArrayList<Text>());
-        stack.set(DataComponentTypes.LORE, lore);
+
+        List<Text> lore = stack.getTooltip((PlayerEntity)stack.getHolder(), TooltipContext.ADVANCED);
+
+        lore.clear();
+
+        //TODO: replace item?
     }
 
     public static void removeLoreLine(ItemStack stack, int index) {
-        LoreComponent lore = stack.getComponents().get(DataComponentTypes.LORE);
-
-        //if null
-        if (lore == null)
-            lore = new LoreComponent(new ArrayList<>());
-
-        //get all lores from the array
-        List<Text> allLoreLines = new ArrayList<Text>(lore.lines());
+        List<Text> lore = stack.getTooltip((PlayerEntity)stack.getHolder(), TooltipContext.ADVANCED);
 
         //replace target lore into this item
-        if (index <= allLoreLines.size())
-            allLoreLines.remove(index - 1);
+        if (index <= lore.size())
+            lore.remove(index - 1);
 
-        //just replace the obj
-        lore = new LoreComponent(allLoreLines);
-        stack.set(DataComponentTypes.LORE, lore);
+        //TODO: replace item?
     }
 }
