@@ -1,7 +1,6 @@
 package faewulf.itemrename;
 
-import com.mojang.brigadier.CommandDispatcher;
-import faewulf.itemrename.util.ReflectionUtils;
+import faewulf.itemrename.command.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import org.slf4j.Logger;
@@ -20,7 +19,19 @@ public class Itemrename implements ModInitializer {
 
     private void loadCommands() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            ReflectionUtils.invokeMethodOnClasses("faewulf.itemrename.command", "register", CommandDispatcher.class, dispatcher);
+            addLoreLine.register(dispatcher);
+            glow.register(dispatcher);
+            hideEnchant.register(dispatcher);
+            insertLoreLine.register(dispatcher);
+            lockItem.register(dispatcher);
+            removeGlow.register(dispatcher);
+            removeLore.register(dispatcher);
+            removeLoreLine.register(dispatcher);
+            removeName.register(dispatcher);
+            rename.register(dispatcher);
+            setLoreLine.register(dispatcher);
+            unhideEnchant.register(dispatcher);
+            unlockItem.register(dispatcher);
         });
     }
 }
