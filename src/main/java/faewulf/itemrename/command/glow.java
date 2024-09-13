@@ -41,7 +41,13 @@ public class glow {
 
         ownerCheck.check(player, holding);
 
-        //TODO: add glint
+        if(holding.hasGlint())
+        {
+            player.sendMessage(Text.of("Item already has enchantment glow."), false);
+            return 0;
+        }
+
+        holding.getNbt().putBoolean("ForceGlint", true);
 
         return 0;
     }

@@ -41,7 +41,7 @@ public class hideEnchant {
 
         ownerCheck.check(player, holding);
 
-        //TODO: hide enchant
+        holding.addHideFlag(ItemStack.TooltipSection.ENCHANTMENTS);
 
         return 0;
     }

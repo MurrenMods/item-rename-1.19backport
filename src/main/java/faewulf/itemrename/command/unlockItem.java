@@ -40,7 +40,13 @@ public class unlockItem {
 
         ownerCheck.check(player, holding);
 
-        //TODO: remove tag
+        if(!holding.hasNbt()) {
+            player.sendMessage(Text.of("Item has no NBT data"), false);
+            return 0;
+        }
+
+        holding.getNbt().remove("itemrename:authorUUID");
+        holding.getNbt().remove("itemrename:authorName");
         /*holding.apply(DataComponentTypes.CUSTOM_DATA, NbtComponent.DEFAULT, comp -> comp.apply(currentNbt -> {
             currentNbt.remove("itemrename:authorUUID");
             currentNbt.remove("itemrename:authorName");

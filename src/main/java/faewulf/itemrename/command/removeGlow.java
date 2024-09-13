@@ -40,7 +40,7 @@ public class removeGlow {
 
         ownerCheck.check(player, holding);
 
-        //TODO: remove glint
+        holding.getNbt().remove("ForceGlint");
         //holding.remove(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE);
 
         return 0;

@@ -46,7 +46,12 @@ public class lockItem {
 
         ownerCheck.check(player, holding);
 
-        //TODO: set tag
+        if(holding.getNbt() == null) {
+            holding.setNbt(new NbtCompound());
+        }
+
+        holding.getNbt().putString("itemrename:authorUUID", player.getUuid().toString());
+        holding.getNbt().putString("itemrename:authorName", player.getName().getString());
         /*holding.apply(DataComponentTypes.CUSTOM_DATA, NbtComponent.DEFAULT, comp -> comp.apply(currentNbt -> {
             currentNbt.putString("itemrename:authorUUID", player.getUuid().toString());
             currentNbt.putString("itemrename:authorName", player.getName().getString());

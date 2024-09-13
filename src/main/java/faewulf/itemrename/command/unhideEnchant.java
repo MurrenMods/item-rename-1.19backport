@@ -40,7 +40,16 @@ public class unhideEnchant {
 
         ownerCheck.check(player, holding);
 
-        //TODO: unhide enchant
+        if(!holding.hasNbt()) {
+            player.sendMessage(Text.of("Item has no NBT data"), false);
+            return 0;
+        }
+
+        int hideflags = holding.getNbt().getInt("HideFlags");
+        hideflags = hideflags & ~ItemStack.TooltipSection.ENCHANTMENTS.getFlag();
+        holding.getNbt().putInt("HideFlags", hideflags);
+
+        //holding.getHideFlags().remove(ItemStack.TooltipSection.ENCHANTMENTS);
         //holding.apply(DataComponentTypes.ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT, comp -> comp.withShowInTooltip(true));
 
         return 0;
