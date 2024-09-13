@@ -3,70 +3,71 @@ package faewulf.itemrename.util;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.NbtString;
 import net.minecraft.text.Text;
 
 import java.util.List;
 
 public class loreEditor {
     public static void setLore(ItemStack stack, int lineIndex, Text loreText) {
-        List<Text> lore = stack.getTooltip((PlayerEntity) stack.getHolder(), TooltipContext.ADVANCED);
+        NbtCompound itemNbt = stack.getOrCreateSubNbt("display");
 
-        //should fill empty line with null?
-        int currentLoreSize = lore.size();
-        while (lineIndex > currentLoreSize) {
-            currentLoreSize++;
-            lore.add(Text.of(" "));
+        NbtList lore = itemNbt.getList("Lore", NbtElement.STRING_TYPE);
+        if (lore.size() + 1 <= lineIndex) {
+            return;
         }
 
-        //replace target lore into this item
-        lore.set(lineIndex - 1, loreText);
-
-        //TODO: replace item?
+        lore.set(lineIndex - 1, NbtString.of(Text.Serializer.toJson(loreText)));
+        itemNbt.put("Lore", lore);
     }
 
     public static void insertLore(ItemStack stack, int lineIndex, Text loreText) {
-        List<Text> lore = stack.getTooltip((PlayerEntity) stack.getHolder(), TooltipContext.ADVANCED);
+        NbtCompound itemNbt = stack.getOrCreateSubNbt("display");
 
-        //if lineindex > lines
-        //should fill empty line with null?
-        int currentLoreSize = lore.size();
-        while (lineIndex - 1 > currentLoreSize) {
-            currentLoreSize++;
-            lore.add(Text.of(" "));
+        NbtList lore = itemNbt.getList("Lore", NbtElement.STRING_TYPE);
+        if (lore.size() + 1 <= lineIndex) {
+            return;
         }
-
-        //replace target lore into this item
-        lore.add(lineIndex - 1, loreText);
-
-        //TODO: replace item?
+        lore.addElement(lineIndex - 1, NbtString.of(Text.Serializer.toJson(loreText)));;
+        itemNbt.put("Lore", lore);
     }
 
     public static void addLore(ItemStack stack, Text loreText) {
-        List<Text> lore = stack.getTooltip((PlayerEntity) stack.getHolder(), TooltipContext.ADVANCED);
+        NbtCompound itemNbt = stack.getOrCreateSubNbt("display");
 
-        //replace target lore into this item
-        lore.add(loreText);
+        NbtList lore = new NbtList();
+        if (itemNbt.contains("Lore")) {
+            lore = itemNbt.getList("Lore", NbtElement.STRING_TYPE);
+        }
 
-        //TODO: replace item?
+        lore.add(NbtString.of(Text.Serializer.toJson(loreText)));
+        itemNbt.put("Lore", lore);
     }
 
     public static void removeLore(ItemStack stack) {
-        //just replace the obj
+        NbtCompound itemNbt = stack.getOrCreateSubNbt("display");
 
-        List<Text> lore = stack.getTooltip((PlayerEntity) stack.getHolder(), TooltipContext.ADVANCED);
-
+        NbtList lore = itemNbt.getList("Lore", NbtElement.STRING_TYPE);
         lore.clear();
-
-        //TODO: replace item?
+        itemNbt.put("Lore", lore);
     }
 
     public static void removeLoreLine(ItemStack stack, int index) {
-        List<Text> lore = stack.getTooltip((PlayerEntity) stack.getHolder(), TooltipContext.ADVANCED);
+        NbtCompound itemNbt = stack.getOrCreateSubNbt("display");
 
-        //replace target lore into this item
-        if (index <= lore.size())
-            lore.remove(index - 1);
+        if (!itemNbt.contains("Lore")) {
+            return;
+        }
 
-        //TODO: replace item?
+        NbtList lore = itemNbt.getList("Lore", NbtElement.STRING_TYPE);
+        if (lore.size() + 1 <= index) {
+            return;
+        }
+
+        lore.remove(index - 1);
+        itemNbt.put("Lore", lore);
     }
 }

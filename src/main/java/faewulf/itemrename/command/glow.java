@@ -19,7 +19,7 @@ public class glow {
         dispatcher.register(
                 CommandManager.literal("glow")
                         .requires(ServerCommandSource::isExecutedByPlayer)
-                        //.requires(Permissions.require(permission.GLOW))
+                        .requires(Permissions.require(permission.GLOW))
                         .executes(glow::run)
         );
     }

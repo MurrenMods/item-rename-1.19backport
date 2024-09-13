@@ -19,7 +19,7 @@ public class removeGlow {
         dispatcher.register(
                 CommandManager.literal("removeglow")
                         .requires(ServerCommandSource::isExecutedByPlayer)
-                        //.requires(Permissions.require(permission.REMOVEGLOW))
+                        .requires(Permissions.require(permission.REMOVEGLOW))
                         .executes(removeGlow::run)
         );
     }

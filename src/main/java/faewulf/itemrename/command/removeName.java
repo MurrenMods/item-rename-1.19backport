@@ -19,7 +19,7 @@ public class removeName {
         dispatcher.register(
                 CommandManager.literal("removename")
                         .requires(ServerCommandSource::isExecutedByPlayer)
-                        //.requires(Permissions.require(permission.REMOVENAME))
+                        .requires(Permissions.require(permission.REMOVENAME))
                         .executes(removeName::run)
         );
 
