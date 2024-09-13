@@ -20,7 +20,7 @@ public class ownerCheck {
         //get data
         NbtCompound customData = item.getNbt();
 
-        if(customData == null)
+        if (customData == null)
             return;
 
         //if not found any related data, then item is safe to pass
@@ -50,7 +50,7 @@ public class ownerCheck {
     static public String getOwnerName(ItemStack item) {
         NbtCompound customData = item.getNbt();
 
-        if(customData == null)
+        if (customData == null)
             return "unknown";
 
         if (!customData.contains("itemrename:authorName"))

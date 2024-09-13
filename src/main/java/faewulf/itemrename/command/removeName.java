@@ -12,10 +12,7 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-
-import java.util.Objects;
 
 public class removeName {
     static public void register(CommandDispatcher<ServerCommandSource> dispatcher) {

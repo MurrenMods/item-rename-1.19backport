@@ -11,7 +11,7 @@ public class ItemStackMixin {
     @Inject(method = "hasGlint", at = @At("HEAD"), cancellable = true)
     private void hasGlint(CallbackInfoReturnable<Boolean> cir) {
         ItemStack itemStack = (ItemStack) (Object) this;
-        if(itemStack.hasNbt() && itemStack.getNbt().getBoolean("ForceGlint")) {
+        if (itemStack.hasNbt() && itemStack.getNbt().getBoolean("ForceGlint")) {
             cir.setReturnValue(true);
         }
     }

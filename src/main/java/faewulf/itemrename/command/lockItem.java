@@ -7,7 +7,6 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import faewulf.itemrename.util.ownerCheck;
 import faewulf.itemrename.util.permission;
 import me.lucko.fabric.api.permissions.v0.Permissions;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.command.CommandManager;
@@ -15,10 +14,6 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Uuids;
-import org.apache.logging.log4j.core.util.UuidUtil;
-
-import java.util.UUID;
 
 public class lockItem {
     static public void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -46,7 +41,7 @@ public class lockItem {
 
         ownerCheck.check(player, holding);
 
-        if(holding.getNbt() == null) {
+        if (holding.getNbt() == null) {
             holding.setNbt(new NbtCompound());
         }
 

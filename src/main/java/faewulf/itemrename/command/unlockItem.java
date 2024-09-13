@@ -40,7 +40,7 @@ public class unlockItem {
 
         ownerCheck.check(player, holding);
 
-        if(!holding.hasNbt()) {
+        if (!holding.hasNbt()) {
             player.sendMessage(Text.of("Item has no NBT data"), false);
             return 0;
         }

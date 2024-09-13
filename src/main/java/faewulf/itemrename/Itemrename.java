@@ -1,13 +1,9 @@
 package faewulf.itemrename;
 
-import faewulf.itemrename.command.rename;
-import faewulf.itemrename.command.setLoreLine;
+import com.mojang.brigadier.CommandDispatcher;
 import faewulf.itemrename.util.ReflectionUtils;
 import net.fabricmc.api.ModInitializer;
-import com.mojang.brigadier.CommandDispatcher;
-
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.server.command.ServerCommandSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

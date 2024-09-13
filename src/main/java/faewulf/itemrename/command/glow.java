@@ -1,11 +1,9 @@
 package faewulf.itemrename.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import faewulf.itemrename.util.loreEditor;
 import faewulf.itemrename.util.ownerCheck;
 import faewulf.itemrename.util.permission;
 import me.lucko.fabric.api.permissions.v0.Permissions;
@@ -41,8 +39,7 @@ public class glow {
 
         ownerCheck.check(player, holding);
 
-        if(holding.hasGlint())
-        {
+        if (holding.hasGlint()) {
             player.sendMessage(Text.of("Item already has enchantment glow."), false);
             return 0;
         }
